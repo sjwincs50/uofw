@@ -2731,20 +2731,25 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
   }, "default");
 
   // code/main.js
-  Es({ width: 1024, height: 768, stretch: true, letterbox: true });
+  Es({
+    width: 1024,
+    height: 768,
+    stretch: true,
+    letterbox: true
+  });
   var WIDTH = 1024;
   var HEIGHT = 768;
   loadSprite("flappy", "sprites/flappy.png");
   loadSprite("bg", "sprites/bg.png");
   scene("main", () => {
     const JUMP_FORCE = 800;
-    const PIP_OPEN = 240;
-    const PIP_MIN = 60;
+    const PIPE_OPEN = 240;
+    const PIPE_MIN = 60;
     const SPEED = 320;
     const CEILLING = -55;
     layer(["bg", "obj", "ui"], "obj");
     gravity(3200);
-    const flappy = add([sprite("flappy"), pos(WIDTH / 4, 0), area(), body()]);
+    const flappy = add([sprite("flappy"), pos(WIDTH / 4, 0), area(), body(), layer("obj")]);
     add([sprite("bg"), pos(0, 0), layer("bg")]);
     mouseClick(() => {
       flappy.jump(JUMP_FORCE);
@@ -2769,7 +2774,8 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     });
     scene("lose", () => {
       add([sprite("bg"), pos(0, 0)]);
-      add([sprite("flappy"), pos(WIDTH / 2, HEIGHT / 2 - 100)]);
+      add([sprite("flappy"), pos(WIDTH / 2, HEIGHT / 2 - 100), scale(3), origin("center")]);
+      add([text("CLICK TO PLAY AGAIN"), pos(WIDTH / 2, HEIGHT / 2 + 300), origin("center")]);
     });
   });
   go("main");
