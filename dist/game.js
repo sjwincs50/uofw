@@ -2749,8 +2749,8 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     const CEILLING = -55;
     layer(["bg", "obj", "ui"], "obj");
     gravity(3200);
-    const flappy = add([sprite("flappy"), pos(WIDTH / 4, 0), area(), body(), layer("obj")]);
     add([sprite("bg"), pos(0, 0), layer("bg")]);
+    const flappy = add([sprite("flappy"), pos(WIDTH / 4, 0), area(), body(), layer("obj")]);
     mouseClick(() => {
       flappy.jump(JUMP_FORCE);
     });

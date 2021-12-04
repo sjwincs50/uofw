@@ -22,8 +22,8 @@ scene("main", () => {
 
 	layer(["bg","obj","ui"],"obj")
 	gravity(3200);
-	const flappy = add([sprite("flappy"),pos(WIDTH/4,0),area(),body(),layer("obj"),]);
 	add([sprite("bg"),pos(0,0),layer("bg"),])
+	const flappy = add([sprite("flappy"),pos(WIDTH/4,0),area(),body(),layer("obj"),]);
 	mouseClick(()=> {flappy.jump(JUMP_FORCE);})
 	flappy.action(()=> {
 		if (flappy.pos.y>=HEIGHT || flappy.pos.y<=CEILLING) {
